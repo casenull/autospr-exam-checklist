@@ -1,0 +1,145 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\newenvironment{QandA}{\begin{enumerate}[label=\bfseries\arabic*.]\bfseries}{\end{enumerate}}
+\newenvironment{answered}{\par\normalfont}{}
+\pagestyle{empty}
+
+\begin{document}
+    \section{Begriffe}
+    \begin{description}
+        \item[Alphabet] $\Sigma = \{\dots\}$ ist die Menge von Zeichen, aus welchen die Wörter der definierten Sprache aufgebaut werden.
+        \item[Menge aller Wörter eines Alphabets] $\Sigma^*$ ist die Menge aller aus dem Alphabet $\Sigma$ gebauten Wörter. Beispiel:$\Sigma = \{a,b\}$ \[\Sigma^* = \{\varepsilon, a,b,aa,ab,ba,bb,aaa,aab,aba,abb,baa,bab,bba,bbb,\dots\}\]
+        \item[Wort] $w \in \Sigma^*$ ist eine Kombination aus Zeichen aus dem Alphabet.
+        \item[Leeres Wort] $\varepsilon \in \Sigma^*, |\varepsilon| = 0$ ist das Wort mit der Länge 0.
+        \item[Sprache] $L(A)$ ist die Sprache, welche von einem Automaten akzeptiert wird. Man sagt \emph{$A$ akzeptiert $L$}.
+        \item[regulär] Eine Sprache ist dann regulär, wenn es einen DEA gibt, der sie akzeptiert.
+        \item[DEA] Deterministischer Endlicher Automat
+        \item[deterministisch] Der Determinismus ist die Auffassung, dass zukünftige Ereignisse durch Vorbedingungen eindeutig festgelegt sind (für jedes Zeichen ist in jedem Zustand ein Übergang vorhanden).
+        \item[nicht deterministisch] Gegenteil von zuvor (es kann für ein Zeichen mehrere Übergänge geben und es werden nur Übergänge eingezeichnet, welche für das Erreichen des Akzeptierzustandes nötig sind).
+        \item[NEA] Nichtdeterministischer Endlicher Automat. Kann auch $\varepsilon$-Übergänge enthalten, dabei wird von einem $NEA_\varepsilon$ gesprochen.
+        \item[akzeptieren] Ein Wort wird von einem Automaten akzeptiert, wenn sich der Automat nach dem einlesen des gesamten Wortes in einem Akzeptierzustand befindet.
+        \item[akzeptierte Sprache eines DEA] $L(A) = \left[w \in \Sigma^* | w \textnormal{ wird von } A \textnormal{ akzeptiert}\right]$ beinhaltet alle Wörter, welche vom Automaten $A$ akzeptiert werden.
+        \item[regulärer Ausdruck] Notation nach Vorgaben, welche einen Automaten mit *-Operationen, Alternativen und Verkettungen beschreibt.
+        \item[Grammatik] Beschreibung einer kontextfreien Sprache in der Form $S \rightarrow SS$ oder $S \leftarrow s$, welche beschreibt, wie sich Nichtterminalsymbole (in diesem Fall $S$ und $SS$) "entwickeln" können (i entwickelt sich $S$ zu $SS$ oder dem Terminalsymbol $s$).
+        \item[kontextfrei] Unabhängig von der Umgebung anwendbar (z.B. Kommentare in der Programmiersprache C können in jedem Programm erkannt werden).
+        \item[Variable] Nichtterminalsymbol
+        \item[Regel] $\rightarrow$
+        \item[Ableitung] Erstellen einer Kombination von Terminalsymbolen (a.k.a. Wort) aus einer Variable (Frage ist jeweils: Kann $w$ aus $S$ abgeleitet werden?)
+        \item[Parse Tree] "Baum", welcher beim ableiten eines Wortes aus einer Variable entsteht. Falls ein Wort mehrere Parse Trees erlaubt, ist die Grammatik nicht in Chomsky-Normalform.
+        \item[erzeugte Sprache einer Grammatik] Alle wörter, die aus einer Grammatik abeleitet werden können.
+        \item[Stackautomat] NEA, welcher über einen Speicher (Stack) verfügt, bei welchem er jeweils auf das Oberste Element zugreifen kann.
+        \item[Turing-Maschine] NEA, der über einen unendlichen Speicher (Band) verfügt und einen Lesekopf beliebig auf diesem Band bewegen kann.
+        \item[erkannte Sprache einer TM] ???
+        \item[Entscheider] Ein Entscheider ist eine TM, die auf jeden beliebigen Input anhält.
+        \item[entscheidbare Sprache] Eine Sprache $L$ ist entscheidbar, wenn es einen entscheider $M$ gibt mit $L=L(M)$. Man sagt \emph{$M$ entscheidet $L$}.
+        \item[Akzeptanzproblem] Es kann nicht entschieden werden, ob:
+            \[A_{DEA}=\{\langle A,w \rangle A | A \textnormal{ ein DEA, der } w \textnormal{ akzeptiert.}\}\]
+        \item[abzählbar unendlich] Die Elemente einer abzählbar unendlichen Menge lassen sich mit $n \in \mathbb{N}$ nummerieren.
+        \item[überabzählbar unendlich] Die Elemente einer überabzählbar unendlichen Menge werden mit $r \in \mathbb{R}$ nummeriert. Es lässt sich also noch immer eine Zahl finden, die in mindestens einer Stelle zu allen anderen unterschiedlich ist.
+        \item[Reduktion] ???
+        \item[P und NP] 
+        \item[NP-vollständig] 
+        \item[polynomielle Reduktion] 
+        \item[SAT] 
+        \item[3SAT] 
+        \item[Clique] 
+        \item[Turing-vollständig] 
+        \item[LOOP] 
+    \end{description}
+    
+    \section{Fragen}
+    \begin{QandA}
+        \item Was ist $\Sigma^*$?
+        \begin{answered}
+            Die Menge aller Wörter aus dem Alphabet $\Sigma$?
+        \end{answered}
+
+        \item Was ist der Unterschied zwischen $\varepsilon$, $\emptyset$ und $\{\varepsilon\}$
+        \begin{answered}
+            $\varepsilon$ ist das leere wort mit der länge $|w|=0$, $\emptyset$ ist die leere Sprache, welche gar keine Wörter enthält und $\{\varepsilon\}$ ist Menge/Sprache, die nur das leere Wort enthält.
+        \end{answered}
+        \item Wie unterscheidet sich ein $DEA$ von einem $NEA$?
+        \begin{answered}
+            Ein $DEA$ hat zu jedem Zustand für jedes Zeichen \underline{genau einen} Übergang (Voraussetzung für den Determinismus). Ein $NEA$ wiederum darf für jeden Zustand beliebige Übergänge haben, also für jedes Zeichen mehrere, einen oder gar keinen Übergang. Ein $NEA_\varepsilon$ kann auch sogenannte $\varepsilon$-Übergänge haben, welche ohne Input funktionieren.
+        \end{answered}
+        \item Wie kann man zwei endliche Automaten vergleichen?
+        \begin{answered}
+            Man bildet von beiden Automaten den minimalen Automaten z.B. mittels "Kreuzchenalgorithmus". Diese Minimalautomaten sind bei gleichen Automaten ebenfalls gleich.
+        \end{answered}
+        \item Nennen Sie drei Methoden, mit denen sie zeigen können, dass eine Sprache regulär ist.
+        \begin{answered}
+            Eine Sprache ist regulär, wenn sie einen DEA besitzt, durch einen regulären Ausdruck beschreiben werden kann oder nur die Operationen Alternative, Verkettung oder *-Operation verwendet wird.
+        \end{answered}
+        \item Nennen Sie zwei Methoden, mit denen sie zeigen können, dass eine Sprache nicht regulär ist.
+        \begin{answered}
+            Pumping Lemma oder wenn sie keinen DEA besitzt.
+        \end{answered}
+        \item Beschreiben Sie den Zusammenhang zwischen DEAs, NEAs und regulären Ausdrücken.
+        \begin{answered}
+            Ein NEA kann zu einem DEA gemacht werden (Zustandsmengenalgorithmus), ein DEA kann dann zu einem regulären Ausdruck gemacht werden.
+        \end{answered}
+        \item Beschreiben Sie die fünf typischen Schritte, die notwendig sind, um mit dem Pumping Lemma zu beweisen, dass eine Sprache nicht regulär ist.
+        \begin{answered}
+            \begin{enumerate}
+                \item Annehmen, dass die Sprache $L$ kontextfrei ist.
+                \item Es gibt eine Pumping Length $N$.
+                \item Ein Wort $w \in L$ mit $|w| \geq N$ Festlegen.
+                \item Wort aufteilen $w=xyz, |xy| \leq N, |y| > 0$.
+                \item Was passiert, wenn mit $y$ gepumpt wird? Ist das neue wort immer noch in der Sprache?
+                \item Widerspruch und Schlussfolgerung.
+            \end{enumerate}
+        \end{answered}
+        \item Beschrebien Sie DEAs für die Sprachen $\emptyset$, $\{\varepsilon\}$ und $\Sigma^*$.
+        \item Warum sind endliche Sprachen regulär?
+        \item Geben Sie ein typisches Beispiel für eine nicht reguläre Sprache.
+        \begin{answered}
+            $L = \{0^n1^n|n \geq 0\}$
+        \end{answered}
+        \item Was ist eine kontextfreie Grammatik?
+        \item Was bedeutet $w \in L(G)$?
+        \begin{answered}
+            $w$ ist ein Wort aus der Sprache $L$ welche durch die Grammatik $G$ definiert ist.
+        \end{answered}
+        \item Welche Eigenschaften hat eine kontextfreie Grammatik in Chomsky-Normalform?
+        \begin{answered}
+            Jedes Wort aus einer CFG in CNF hat einen eindeutigen Parse Tree.
+        \end{answered}
+        \item Wie kann man eine Grammatik in Chomsky-Normalform bringen?
+        \begin{answered}
+            Nach den folgenden Regeln:
+            \begin{enumerate}
+                \item 
+            \end{enumerate}
+        \end{answered}
+        \item Ist die Chomsky-Normalform eindeutig?
+        \item Was müssen Sie tun um nachzuweisen, dass eine Sprache kontextfrei ist?
+        \item Wie funktioniert ein Stack-Automat?
+        \item Welche Eigenschaften muss eine Sprache haben, damit es einen Stack-Automaten gibt, der sie akzeptieren kann?
+        \item Beschreiben Sie eine Technik, mit der Sie zeigen können, dass eine Sprache nicht kontextfrei ist.
+        \item Geben Sie Grammatiken an für die Sprachen $\emptyset$, $\{\varepsilon\}$ und $\Sigma^*$.
+        \item Beschreiben Sie die fünf typischen Schritte, die notwendig sind, um mit dem Pumping Lemma zu beweisen, dass eine Sprache nicht regulär ist.
+        \item Geben Sie ein typisches Beispiel für eine nicht kontextfreie Sprache.
+        \item Gibt es eine Turing-Maschine mit nur einem Zustand?
+        \item Wieviele verschiedene Sprachen können von Turing-Maschinen mit zwei Zuständen erkannt werden. Warum?
+        \item Zählen Sie drei Varianten von Turing-Maschinen auf.
+        \item Sei M eine nicht deterministische Turing-Maschine und $w \in \Sigma^*$. Was heisst $w \in L(M)$?
+        \item Warum gibt es Sprachen, die nicht Turing-erkennbar sind?
+        \item Was ist der Unterschied zwischen einer Turing erkennbaren Sprache und einer Turing entscheidbaren Sprache?
+        \item Was müssen Sie tun um nachzuweisen, dass eine turing-erkennbare Sprache entscheidbar ist?
+        \item Beschreiben Sie das prototypische nicht entscheidbare Problem für Turing-Maschinen.
+        \item Was bedeutet Reduktion eines Problems auf ein anderes?
+        \item Erklären Sie eine Standardtechnik, mit der man nachweisen kann, dass ein Problem nicht entscheidbar ist.
+        \item Geben Sie ein Beispiel eines nicht entscheidbaren Problems.
+        \item Was besagt das Halte-Theorem?
+        \item Wie ändert sich die Laufzeit eines Algorithmus, wenn man von einer Variante einer TM zu einer Standard TM übergeht?
+        \item Was bedeutet polynomielle Reduktion?
+        \item Wie ändert sich die Laufzeit, wenn man eine nichtdeterministische Maschine auf einer deterministischen Maschine simuliert?
+        \item Was bedeutet das Problem SAT?
+        \item Was unterscheidet ein Problem wie SAT von einem Problem wie die ganzzahlige Division von Zahlen?
+        \item Wie können Sie herausfinden, ob eine Programmiersprache Turing-vollständig ist?
+        \item Warum ist die Sprache LOOP nicht Turing-vollständig?
+        \item Gibt es Probleme, die man WHILE lösen kann, nicht aber GOTO?
+        \item Ist es möglich, einen Compiler zu schreiben, der C-Code in Brainfuck üversetzt?
+    \end{QandA}
+\end{document}
