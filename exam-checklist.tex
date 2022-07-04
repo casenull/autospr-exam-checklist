@@ -1,6 +1,8 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage{amssymb}
 \usepackage{enumitem}
+\usepackage[top=2cm,bottom=2cm,left=3cm,right=3cm]{geometry}
+
 \newenvironment{QandA}{\begin{enumerate}[label=\bfseries\arabic*.]\bfseries}{\end{enumerate}}
 \newenvironment{answered}{\par\normalfont}{}
 \pagestyle{empty}
@@ -107,39 +109,88 @@
         \end{answered}
         \item Wie kann man eine Grammatik in Chomsky-Normalform bringen?
         \begin{answered}
-            Nach den folgenden Regeln:
-            \begin{enumerate}
-                \item 
-            \end{enumerate}
+            Neue Startvariable festlegen, $\varepsilon$-Regeln entfernen, Unit-Rules entfernen, Verkettungen ersetzen.
         \end{answered}
         \item Ist die Chomsky-Normalform eindeutig?
+        \begin{answered}
+            Ja, es gibt für jede Grammatik nur eine Chomsky-Normalform.
+        \end{answered}
         \item Was müssen Sie tun um nachzuweisen, dass eine Sprache kontextfrei ist?
         \item Wie funktioniert ein Stack-Automat?
         \item Welche Eigenschaften muss eine Sprache haben, damit es einen Stack-Automaten gibt, der sie akzeptieren kann?
         \item Beschreiben Sie eine Technik, mit der Sie zeigen können, dass eine Sprache nicht kontextfrei ist.
+        \begin{answered}
+            Das Pumping Lemma für kontextfreie Sprachen kann angewendet werden.
+        \end{answered}
         \item Geben Sie Grammatiken an für die Sprachen $\emptyset$, $\{\varepsilon\}$ und $\Sigma^*$.
         \item Beschreiben Sie die fünf typischen Schritte, die notwendig sind, um mit dem Pumping Lemma zu beweisen, dass eine Sprache nicht regulär ist.
+        \begin{answered}
+            \begin{enumerate}
+                \item Annehmen, dass die Sprache $L$ kontextfrei ist.
+                \item Es gibt eine Pumping Length $N$.
+                \item Ein Wort $w \in L$ mit $|w| \geq N$ Festlegen.
+                \item Wort aufteilen $w=xyz, |xy| \leq N, |y| > 0$.
+                \item Was passiert, wenn mit $y$ gepumpt wird? Ist das neue wort immer noch in der Sprache?
+                \item Widerspruch und Schlussfolgerung.
+            \end{enumerate}
+        \end{answered}
         \item Geben Sie ein typisches Beispiel für eine nicht kontextfreie Sprache.
+        \begin{answered}
+            $L = \{a^nb^nc^n|n \geq 0\}$
+        \end{answered}
         \item Gibt es eine Turing-Maschine mit nur einem Zustand?
         \item Wieviele verschiedene Sprachen können von Turing-Maschinen mit zwei Zuständen erkannt werden. Warum?
         \item Zählen Sie drei Varianten von Turing-Maschinen auf.
+        \begin{answered}
+            Mehrbandmaschine, Mehrspurmaschine, nicht deterministische Turingmaschine
+        \end{answered}
         \item Sei M eine nicht deterministische Turing-Maschine und $w \in \Sigma^*$. Was heisst $w \in L(M)$?
         \item Warum gibt es Sprachen, die nicht Turing-erkennbar sind?
         \item Was ist der Unterschied zwischen einer Turing erkennbaren Sprache und einer Turing entscheidbaren Sprache?
-        \item Was müssen Sie tun um nachzuweisen, dass eine turing-erkennbare Sprache entscheidbar ist?
+        \begin{answered}
+            Eine Sprache $L$ heisst Turing-erkennbar, wenn es eine Turing-Maschine $M$ gibt mit $L = L(M)$. Eine Sprache $L$ ist dann Turing-entscheidbar, wenn die Turing-Maschine $M$, welche die Sprache definiert, auf jeden beliebigen Input anhält, während bei einer nur erkennbaren Sprache einzelne Input-Wörter auch dazu führen können, dass die Turing-Maschine endlos weiterrechnet. Somit ist klar, dass eine Turing-entscheidbare Sprache auch Turing-erkennbar ist.
+        \end{answered}
+        \item Was müssen Sie tun um nachzuweisen, dass eine Turing-erkennbare Sprache entscheidbar ist?
+        \begin{answered}
+            Eine Turing-erkennbare Sprache ist dann entscheidbar, wenn es dafür einen Entscheider (ein Entscheider ist eine Turingmaschine, die auf jedem Input $w \in \Sigma^*$ anhält) gibt.
+        \end{answered}
         \item Beschreiben Sie das prototypische nicht entscheidbare Problem für Turing-Maschinen.
+        \begin{answered}
+            Halteproblem?
+        \end{answered}
         \item Was bedeutet Reduktion eines Problems auf ein anderes?
         \item Erklären Sie eine Standardtechnik, mit der man nachweisen kann, dass ein Problem nicht entscheidbar ist.
         \item Geben Sie ein Beispiel eines nicht entscheidbaren Problems.
         \item Was besagt das Halte-Theorem?
+        \begin{answered}
+            Das Haltetheorem nach Turing besagt, dass anhand der Beschreibung einer Maschine/eines Programms nicht entschieden werden kann, ob sie/es anhalten wird. Beliebte Probleme hierzu sind Virenscanner, welche Programme auf ihr verhalten überprüfen sollen. Dies ist nicht möglich, da ein solcher Scanner das Halteproblem lösen könnte.
+        \end{answered}
         \item Wie ändert sich die Laufzeit eines Algorithmus, wenn man von einer Variante einer TM zu einer Standard TM übergeht?
+        \begin{answered}
+            Die Laufzeit wird exponentiell.
+        \end{answered}
         \item Was bedeutet polynomielle Reduktion?
         \item Wie ändert sich die Laufzeit, wenn man eine nichtdeterministische Maschine auf einer deterministischen Maschine simuliert?
+        \begin{answered}
+            Die Laufzeit wird exponentiell.
+        \end{answered}
         \item Was bedeutet das Problem SAT?
+        \begin{answered}
+            Das Satisfiability (zu Deutsch "Erfüllbarkeitsproblem der Aussagenlogik") ist ein NP-vollständiges Problem, welches sich folgendermassen beschreiben lässt: $F$ ist eine aussagenlogische Formel in konjunktiver Normalform. Gibt es eine Belegung der Variablen von $F$ so, dass die Aussage wahr wird? Als NP-Vollständiges Problem wird SAT von einer deterministischen Turingmaschine (z.B. einem Computer) in exponentieller Zeit entschieden.
+        \end{answered}
         \item Was unterscheidet ein Problem wie SAT von einem Problem wie die ganzzahlige Division von Zahlen?
         \item Wie können Sie herausfinden, ob eine Programmiersprache Turing-vollständig ist?
+        \begin{answered}
+            Eine Programmiersprache ist dann Turing-vollständig, wenn sich darin ein Turing-Maschinen-Simulator schreiben lässt.
+        \end{answered}
         \item Warum ist die Sprache LOOP nicht Turing-vollständig?
+        \begin{answered}
+            LOOP ist nicht Turing-vollständig, da auch verschachtelte LOOP-Statements immer terminieren werden, da bereits zu beginn festgelegt ist, wie oft die Anweisungen ausgeführt werden. Eine Turing-Maschine kann also nicht in LOOP simuliert werden.
+        \end{answered}
         \item Gibt es Probleme, die man WHILE lösen kann, nicht aber GOTO?
-        \item Ist es möglich, einen Compiler zu schreiben, der C-Code in Brainfuck üversetzt?
+        \begin{answered}
+            Nein, WHILE und GOTO sind äquivalente Operationen. Der Code, welcher mit WHILE geschrieben wird, ist nur einiges schöner und verständlicher.
+        \end{answered}
+        \item Ist es möglich, einen Compiler zu schreiben, der C-Code in Brainfuck übersetzt?
     \end{QandA}
 \end{document}
