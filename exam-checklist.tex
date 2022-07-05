@@ -2,6 +2,7 @@
 \usepackage{amssymb}
 \usepackage{enumitem}
 \usepackage[top=2cm,bottom=2cm,left=3cm,right=3cm]{geometry}
+\usepackage{hyperref}
 
 \newenvironment{QandA}{\begin{enumerate}[label=\bfseries\arabic*.]\bfseries}{\end{enumerate}}
 \newenvironment{answered}{\par\normalfont}{}
@@ -23,31 +24,33 @@
         \item[akzeptieren] Ein Wort wird von einem Automaten akzeptiert, wenn sich der Automat nach dem einlesen des gesamten Wortes in einem Akzeptierzustand befindet.
         \item[akzeptierte Sprache eines DEA] $L(A) = \left[w \in \Sigma^* | w \textnormal{ wird von } A \textnormal{ akzeptiert}\right]$ beinhaltet alle Wörter, welche vom Automaten $A$ akzeptiert werden.
         \item[regulärer Ausdruck] Notation nach Vorgaben, welche einen Automaten mit *-Operationen, Alternativen und Verkettungen beschreibt.
-        \item[Grammatik] Beschreibung einer kontextfreien Sprache in der Form $S \rightarrow SS$ oder $S \leftarrow s$, welche beschreibt, wie sich Nichtterminalsymbole (in diesem Fall $S$ und $SS$) "entwickeln" können (i entwickelt sich $S$ zu $SS$ oder dem Terminalsymbol $s$).
-        \item[kontextfrei] Unabhängig von der Umgebung anwendbar (z.B. Kommentare in der Programmiersprache C können in jedem Programm erkannt werden).
+        \item[Grammatik] Beschreibung einer kontextfreien Sprache in der Form $S \rightarrow SS$ oder $S \rightarrow s$, welche beschreibt, wie sich Nichtterminalsymbole (in diesem Fall $S$ und $SS$) "entwickeln" können (i entwickelt sich $S$ zu $SS$ oder dem Terminalsymbol $s$).
+        \item[kontextfrei] Im Bezug auf CFGs bedeutet kontextfrei, dass die Variable auf der Linken Seite (oben $S$) nicht von ihrem Kontext beeinflusst ist.
         \item[Variable] Nichtterminalsymbol
-        \item[Regel] $\rightarrow$
+        \item[Regel] Vorschrift, wie sich die Variable in einer Grammatik entwickeln darf. z.B. $S \rightarrow s$
         \item[Ableitung] Erstellen einer Kombination von Terminalsymbolen (a.k.a. Wort) aus einer Variable (Frage ist jeweils: Kann $w$ aus $S$ abgeleitet werden?)
         \item[Parse Tree] "Baum", welcher beim ableiten eines Wortes aus einer Variable entsteht. Falls ein Wort mehrere Parse Trees erlaubt, ist die Grammatik nicht in Chomsky-Normalform.
         \item[erzeugte Sprache einer Grammatik] Alle wörter, die aus einer Grammatik abeleitet werden können.
         \item[Stackautomat] NEA, welcher über einen Speicher (Stack) verfügt, bei welchem er jeweils auf das Oberste Element zugreifen kann.
         \item[Turing-Maschine] NEA, der über einen unendlichen Speicher (Band) verfügt und einen Lesekopf beliebig auf diesem Band bewegen kann.
-        \item[erkannte Sprache einer TM] ???
+        \item[erkannte Sprache einer TM] $L(M)$ ist die Sprache $L$, welche von einer Turing-Maschine $M$ erkannt werden kann. Beschreibung in \ref{erkennbar}
         \item[Entscheider] Ein Entscheider ist eine TM, die auf jeden beliebigen Input anhält.
         \item[entscheidbare Sprache] Eine Sprache $L$ ist entscheidbar, wenn es einen entscheider $M$ gibt mit $L=L(M)$. Man sagt \emph{$M$ entscheidet $L$}.
         \item[Akzeptanzproblem] Es kann nicht entschieden werden, ob:
             \[A_{DEA}=\{\langle A,w \rangle A | A \textnormal{ ein DEA, der } w \textnormal{ akzeptiert.}\}\]
         \item[abzählbar unendlich] Die Elemente einer abzählbar unendlichen Menge lassen sich mit $n \in \mathbb{N}$ nummerieren.
         \item[überabzählbar unendlich] Die Elemente einer überabzählbar unendlichen Menge werden mit $r \in \mathbb{R}$ nummeriert. Es lässt sich also noch immer eine Zahl finden, die in mindestens einer Stelle zu allen anderen unterschiedlich ist.
-        \item[Reduktion] ???
-        \item[P und NP] 
-        \item[NP-vollständig] 
-        \item[polynomielle Reduktion] 
-        \item[SAT] 
-        \item[3SAT] 
-        \item[Clique] 
-        \item[Turing-vollständig] 
-        \item[LOOP] 
+        \item[Reduktion] Reduktion dient dazu, zwei Probleme zu vergleichen. Wird in \ref{poly-reduction} erklärt.
+        \item[P und NP] Komplexitätsklassen: Die Klasse P besteht aus den sprachen, die mit einem Entscheider (also einer deterministischen Turing-Maschine) in polynomieller Lauftzeit entschieden werden können. Die Klasse NP besteht aus den Sprachen, die mit einer nichtdeterministischen Turingmaschine in polynomieller Laufzeit entschieden werden können. Alle Sprachen in NP haben einen polynomiellen Verifizierer. P ist eine unterklasse von NP. \textbf{Merksatz:} \emph{P ist deterministisch polynomiell, NP ist nichtdeterministisch polynomiell.}
+        \item[NP-vollständig] NP-vollständige Probleme sind die schwersten Probleme in NP. Ein Problem ist NP-vollständig, wenn sich jedes andere Problem in NP darauf reduzieren lässt.
+        \item[polynomielle Reduktion] Wird in \ref{poly-reduction} erklärt.
+        \item[SAT] "Erfüllbarkeitsproblem der Aussagenlogik", wird in \ref{sat} erklärt.
+        \item[3SAT] Dasselbe wie SAT, es sind aber maximal drei Literale pro Klausel enthalten. Beispiele dafür sind:
+            \[F = \overbrace{(\underbrace{x_0}_{Literal} \lor x_1 \lor x_2)}^{Klausel}\]
+            \[G = (x_0 \lor x_1 \lor x_2) \land (x_2 \lor x3) \land (\bar{x_2} \lor x_4) \land ()\]
+        \item[Clique] Beim CLIQUE- oder auch k-CLIQUE-Problem wird danach gefragt, ob es in einem ungerichteten Graphen $G$ eine Clique/einen Subgraphen gibt, deren/dessen $n$ (Anzahl) Knoten alle paarweise untereinander verbunden sind.
+        \item[Turing-vollständig] Die Turing-vollständigkeit ist die Eigenschaft einer Sprache, die besagt, dass in dieser Sprache ein Turing-Maschinen-Simulator implementiert werden kann. Hierzu wird ein WHILE- oder GOTO-Konstrukt benötigt, da sonst garantiert wäre, dass der Simulator anhält, was die Eigenschaften einer Turing-Maschine verletzen würde.
+        \item[LOOP] Ein LOOP ist eine Block-Anweisung einer Programmiersprache, welche die Instruktionen in ihrem Block begrenzt oft ausführt. Auch eine verschachtelung aus LOOP-Anweisungen wird immer terminieren.
     \end{description}
     
     \section{Fragen}
@@ -92,13 +95,19 @@
                 \item Widerspruch und Schlussfolgerung.
             \end{enumerate}
         \end{answered}
-        \item Beschrebien Sie DEAs für die Sprachen $\emptyset$, $\{\varepsilon\}$ und $\Sigma^*$.
+        \item Beschreiben Sie DEAs für die Sprachen $\emptyset$, $\{\varepsilon\}$ und $\Sigma^*$.
         \item Warum sind endliche Sprachen regulär?
+        \begin{answered}
+            Siehe \hyperlink{https://de.wikipedia.org/wiki/Satz_von_Myhill-Nerode}{Wikipedia: Myhill-Nerode} "Endliche Sprachen sind regulär". Sofern mit dem Satz von Myhill-Nerode bewiesen werden kann, dass der Automat einer Sprache mit endlich vielen Zuständen beschrieben werden kann, ist die Sprache regulär. Da der Automat einer endlichen Sprache auch mit endlich vielen Zuständen beschrieben werden kann, ist die Sprache regulär.
+        \end{answered}
         \item Geben Sie ein typisches Beispiel für eine nicht reguläre Sprache.
         \begin{answered}
             $L = \{0^n1^n|n \geq 0\}$
         \end{answered}
         \item Was ist eine kontextfreie Grammatik?
+        \begin{answered}
+            Eine kontextfreie Grammatik $G$ besteht aus Variablen $V$, Terminalsymbolen $\Sigma$ ($V$ und $\Sigma$ müssen disjunkt sein), den Regeln $R$ und der Startvariable $S \in V$. Also ist $G = (V,\Sigma,R,S)$
+        \end{answered}
         \item Was bedeutet $w \in L(G)$?
         \begin{answered}
             $w$ ist ein Wort aus der Sprache $L$ welche durch die Grammatik $G$ definiert ist.
@@ -116,13 +125,22 @@
             Ja, es gibt für jede Grammatik nur eine Chomsky-Normalform.
         \end{answered}
         \item Was müssen Sie tun um nachzuweisen, dass eine Sprache kontextfrei ist?
+        \begin{answered}
+            Eine Sprache ist dann kontextfrei, wenn ein Stackautomat, Regex oder eine Grammatik dazu existiert.
+        \end{answered}
         \item Wie funktioniert ein Stack-Automat?
+        \begin{answered}
+            Ein Stackautomat/Pushdown Automata $P$ ist \textbf{immer nichtdeterministisch}. Er besteht aus Zuständen $Q$, dem Eingabealphabet $\Sigma$, dem Stackalphabet $\Gamma$, den Übergängen $\delta$, einem Startzustand $S \in Q$ z.B. $q_0$ und einer Menge von Akzeptierzuständen $F$. Somit ist $P=(Q,\Sigma,\Gamma,\delta,S,F)$
+        \end{answered}
         \item Welche Eigenschaften muss eine Sprache haben, damit es einen Stack-Automaten gibt, der sie akzeptieren kann?
         \item Beschreiben Sie eine Technik, mit der Sie zeigen können, dass eine Sprache nicht kontextfrei ist.
         \begin{answered}
             Das Pumping Lemma für kontextfreie Sprachen kann angewendet werden.
         \end{answered}
         \item Geben Sie Grammatiken an für die Sprachen $\emptyset$, $\{\varepsilon\}$ und $\Sigma^*$.
+        \begin{answered}
+            Die Menge der Regeln muss Leer sein: $V = \emptyset$, eine "Nicht-Regel" wie $S \rightarrow$ darf nicht existieren, da kein anderes Symbol erreicht wird.
+        \end{answered}
         \item Beschreiben Sie die fünf typischen Schritte, die notwendig sind, um mit dem Pumping Lemma zu beweisen, dass eine Sprache nicht regulär ist.
         \begin{answered}
             \begin{enumerate}
@@ -139,13 +157,23 @@
             $L = \{a^nb^nc^n|n \geq 0\}$
         \end{answered}
         \item Gibt es eine Turing-Maschine mit nur einem Zustand?
+        \begin{answered}
+            Nein, da diese Maschine keinen Sinn machen würde. Es muss $q_{accept} \neq q_{reject}$ gelten, da die Maschine die eigenschaften einer Turing-Maschine sonst nicht erfüllt.
+        \end{answered}
         \item Wieviele verschiedene Sprachen können von Turing-Maschinen mit zwei Zuständen erkannt werden. Warum?
+        \begin{answered}
+            Eine Turing-Maschine mit nur zwei Zuständen ($q_{accept}$ und $q_{reject}$) kann nur keinen Input annehmen und akzeptieren oder irgendetwas annehmen und verwerfen. Somit sind die einzigen erkennbaren Sprachen $\emptyset$ und $\Sigma^*$.
+        \end{answered}
         \item Zählen Sie drei Varianten von Turing-Maschinen auf.
         \begin{answered}
             Mehrbandmaschine, Mehrspurmaschine, nicht deterministische Turingmaschine
         \end{answered}
-        \item Sei M eine nicht deterministische Turing-Maschine und $w \in \Sigma^*$. Was heisst $w \in L(M)$?
+        \item Sei $M$ eine nicht deterministische Turing-Maschine und $w \in \Sigma^*$. Was heisst $w \in L(M)$?
         \item Warum gibt es Sprachen, die nicht Turing-erkennbar sind?
+        \label{erkennbar}
+        \begin{answered}
+            Die Menge der Turing-Maschinen ist abzählbar unendlich, die Menge aller Sprachen ist aber überabzählbar unendlich. Somit kann es Sprachen geben, die nicht Turing-erkennbar sind.
+        \end{answered}
         \item Was ist der Unterschied zwischen einer Turing erkennbaren Sprache und einer Turing entscheidbaren Sprache?
         \begin{answered}
             Eine Sprache $L$ heisst Turing-erkennbar, wenn es eine Turing-Maschine $M$ gibt mit $L = L(M)$. Eine Sprache $L$ ist dann Turing-entscheidbar, wenn die Turing-Maschine $M$, welche die Sprache definiert, auf jeden beliebigen Input anhält, während bei einer nur erkennbaren Sprache einzelne Input-Wörter auch dazu führen können, dass die Turing-Maschine endlos weiterrechnet. Somit ist klar, dass eine Turing-entscheidbare Sprache auch Turing-erkennbar ist.
@@ -170,11 +198,15 @@
             Die Laufzeit wird exponentiell.
         \end{answered}
         \item Was bedeutet polynomielle Reduktion?
+        \begin{answered}
+            \label{poly-reduction}
+        \end{answered}
         \item Wie ändert sich die Laufzeit, wenn man eine nichtdeterministische Maschine auf einer deterministischen Maschine simuliert?
         \begin{answered}
             Die Laufzeit wird exponentiell.
         \end{answered}
         \item Was bedeutet das Problem SAT?
+        \label{sat}
         \begin{answered}
             Das Satisfiability (zu Deutsch "Erfüllbarkeitsproblem der Aussagenlogik") ist ein NP-vollständiges Problem, welches sich folgendermassen beschreiben lässt: $F$ ist eine aussagenlogische Formel in konjunktiver Normalform. Gibt es eine Belegung der Variablen von $F$ so, dass die Aussage wahr wird? Als NP-Vollständiges Problem wird SAT von einer deterministischen Turingmaschine (z.B. einem Computer) in exponentieller Zeit entschieden.
         \end{answered}
