@@ -31,14 +31,14 @@
         \item[Regel] Vorschrift, wie sich die Variable in einer Grammatik entwickeln darf. z.B. $S \rightarrow s$
         \item[Ableitung] Erstellen einer Kombination von Terminalsymbolen (a.k.a. Wort) aus einer Variable (Frage ist jeweils: Kann $w$ aus $S$ abgeleitet werden?)
         \item[Parse Tree] "Baum", welcher beim ableiten eines Wortes aus einer Variable entsteht. Falls ein Wort mehrere Parse Trees erlaubt, ist die Grammatik nicht in Chomsky-Normalform.
-        \item[erzeugte Sprache einer Grammatik] Alle wörter, die aus einer Grammatik abeleitet werden können.
+        \item[erzeugte Sprache einer Grammatik] Alle wörter, die aus einer Grammatik abgeleitet werden können.
         \item[Stackautomat] NEA, welcher über einen Speicher (Stack) verfügt, bei welchem er jeweils auf das Oberste Element zugreifen kann.
         \item[Turing-Maschine] NEA, der über einen unendlichen Speicher (Band) verfügt und einen Lesekopf beliebig auf diesem Band bewegen kann.
         \item[erkannte Sprache einer TM] $L(M)$ ist die Sprache $L$, welche von einer Turing-Maschine $M$ erkannt werden kann. Beschreibung in \ref{erkennbar}
         \item[Entscheider] Ein Entscheider ist eine TM, die auf jeden beliebigen Input anhält.
         \item[entscheidbare Sprache] Eine Sprache $L$ ist entscheidbar, wenn es einen entscheider $M$ gibt mit $L=L(M)$. Man sagt \emph{$M$ entscheidet $L$}.
         \item[Akzeptanzproblem] Es kann nicht entschieden werden, ob:
-            \[A_{DEA}=\{\langle A,w \rangle A | A \textnormal{ ein DEA, der } w \textnormal{ akzeptiert.}\}\]
+            \[A_{DEA}=\{\langle A,w \rangle | A \textnormal{ ein DEA, der } w \textnormal{ akzeptiert.}\}\]
         \item[abzählbar unendlich] Die Elemente einer abzählbar unendlichen Menge lassen sich mit $n \in \mathbb{N}$ nummerieren.
         \item[überabzählbar unendlich] Die Elemente einer überabzählbar unendlichen Menge werden mit $r \in \mathbb{R}$ nummeriert. Es lässt sich also noch immer eine Zahl finden, die in mindestens einer Stelle zu allen anderen unterschiedlich ist.
         \item[Reduktion] Reduktion dient dazu, zwei Probleme zu vergleichen. Wird in \ref{poly-reduction} erklärt.
@@ -58,7 +58,7 @@
     \begin{QandA}
         \item Was ist $\Sigma^*$?
         \begin{answered}
-            Die Menge aller Wörter aus dem Alphabet $\Sigma$?
+            Die Menge aller Wörter aus dem Alphabet $\Sigma$.
         \end{answered}
 
         \item Was ist der Unterschied zwischen $\varepsilon$, $\emptyset$ und $\{\varepsilon\}$
@@ -88,7 +88,7 @@
         \item Beschreiben Sie die fünf typischen Schritte, die notwendig sind, um mit dem Pumping Lemma zu beweisen, dass eine Sprache nicht regulär ist.
         \begin{answered}
             \begin{enumerate}
-                \item Annehmen, dass die Sprache $L$ kontextfrei ist.
+                \item Annehmen, dass die Sprache $L$ regulär ist.
                 \item Es gibt eine Pumping Length $N$.
                 \item Ein Wort $w \in L$ mit $|w| \geq N$ Festlegen.
                 \item Wort aufteilen $w=xyz, |xy| \leq N, |y| > 0$.
@@ -145,14 +145,14 @@
         \begin{answered}
             Die Menge der Regeln muss Leer sein: $V = \emptyset$, eine "Nicht-Regel" wie $S \rightarrow$ darf nicht existieren, da kein anderes Symbol erreicht wird.
         \end{answered}
-        \item Beschreiben Sie die fünf typischen Schritte, die notwendig sind, um mit dem Pumping Lemma zu beweisen, dass eine Sprache nicht regulär ist.
+        \item Beschreiben Sie die fünf typischen Schritte, die notwendig sind, um mit dem Pumping Lemma zu beweisen, dass eine Sprache nicht kontextfrei ist.
         \begin{answered}
             \begin{enumerate}
                 \item Annehmen, dass die Sprache $L$ kontextfrei ist.
                 \item Es gibt eine Pumping Length $N$.
                 \item Ein Wort $w \in L$ mit $|w| \geq N$ Festlegen.
-                \item Wort aufteilen $w=xyz, |xy| \leq N, |y| > 0$.
-                \item Was passiert, wenn mit $y$ gepumpt wird? Ist das neue wort immer noch in der Sprache?
+                \item Wort aufteilen $w=uvxyz, |vxy| \leq N, |vy| > 0$.
+                \item Was passiert, wenn $v$ und $y$ gepumpt werden? Ist das neue wort immer noch in der Sprache?
                 \item Widerspruch und Schlussfolgerung.
             \end{enumerate}
         \end{answered}
@@ -173,6 +173,9 @@
             Mehrbandmaschine, Mehrspurmaschine, nicht deterministische Turingmaschine
         \end{answered}
         \item Sei $M$ eine nicht deterministische Turing-Maschine und $w \in \Sigma^*$. Was heisst $w \in L(M)$?
+        \begin{answered}
+            Das Wort $w$ ist in der Sprache, die von der Turingmaschine M entschieden wird.
+        \end{answered}
         \item Warum gibt es Sprachen, die nicht Turing-erkennbar sind?
         \label{erkennbar}
         \begin{answered}
@@ -192,11 +195,11 @@
         \end{answered}
         \item Was bedeutet Reduktion eines Problems auf ein anderes?
         \begin{answered}
-            Ein Problem wird z.B. auf ein bekanntes NP-komplettes Problem reduziert, um zu beweisen, dass das Problem ebenfalls NP-komplett und somit von einer nichtdeterministischen Turing-Maschine in polynomieller Zeit entschieden werden kann bzw. von einer Turing-Maschine in polynomieller Zeit verifiziert werden kann.
+            Ein Problem wird z.B. auf ein bekanntes NP-vollständiges Problem reduziert, um zu beweisen, dass das Problem ebenfalls NP-vollständig und somit von einer nichtdeterministischen Turing-Maschine in polynomieller Zeit entschieden werden kann bzw. von einer Turing-Maschine in polynomieller Zeit verifiziert werden kann.
         \end{answered}
         \item Erklären Sie eine Standardtechnik, mit der man nachweisen kann, dass ein Problem nicht entscheidbar ist.
         \begin{answered}
-            Reduktion auf ein nicht entscheidbares Problem.
+            Reduktion auf ein nicht entscheidbares Problem oder die Anwendung des Satzes von Rice.
         \end{answered}
         \item Geben Sie ein Beispiel eines nicht entscheidbaren Problems.
         \begin{answered}
@@ -246,8 +249,5 @@
             Nein, WHILE und GOTO sind äquivalente Operationen. Der Code, welcher mit WHILE geschrieben wird, ist nur einiges schöner und verständlicher.
         \end{answered}
         \item Ist es möglich, einen Compiler zu schreiben, der C-Code in Brainfuck übersetzt?
-        \begin{answered}
-            Nein, da C nicht kontextfrei ist. Eine nicht kontextfreie Sprache kann nicht in eine kontextfreie übersetzt werden.
-        \end{answered}
     \end{QandA}
 \end{document}
