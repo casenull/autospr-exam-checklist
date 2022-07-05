@@ -1,0 +1,257 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[top=2cm,bottom=2cm,left=3cm,right=3cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[nswissgerman]{babel}
+\usepackage[LY1,T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage[skip=3mm,font=scriptsize]{caption}
+
+\newenvironment{QandA}{\begin{enumerate}[label=\bfseries\arabic*.]\bfseries}{\end{enumerate}}
+\newenvironment{answered}{\par\normalfont}{}
+
+
+
+\title{Karps 21 NP-vollständige Probleme}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{QandA}
+    \item SAT (Erfüllbarkeitsproblem der Aussagenlogik)
+    \label{sat}
+    \begin{answered}
+        Satisfiability ist ein NP-vollständiges Problem, welches sich folgendermassen beschreiben lässt: $F$ ist eine aussagenlogische Formel in konjunktiver Normalform. Gibt es eine Belegung der Variablen von $F$ so, dass die Aussage wahr wird?
+    \end{answered}
+
+    \item CLIQUE / k-CLIQUE
+    \begin{answered}
+        Geg.: Graph $G$, Zahl $n$
+
+        Beim CLIQUE- oder auch k-CLIQUE-Problem wird danach gefragt, ob es in einem ungerichteten Graphen $G$ eine Clique/einen Subgraphen gibt, deren/dessen $n$ (Anzahl) Knoten alle paarweise untereinander verbunden sind.
+
+        Beispiel: Gibt es in einem Netzwerk $G$ eine Gruppe von $n$ Geräten, die untereinander in einem Full-Mesh verbunden sind? (z.B. Core-Switches)
+    \end{answered}
+
+    \item SET-PACKING
+    \label{set-packing}
+    \begin{answered}
+        Geg.: $n$ Teilmengen $S_j \subset U$, Zahl $k \leq n$
+
+        Frage: Kann die Menge $U$ aus $k$ paarweise disjunkten Untermengen $S_j$ gebildet werden?
+    \end{answered}
+
+    \item VERTEX-COVER
+    \begin{answered}
+        Geg.: Graph $G$, Zahl $k$
+
+        Frage: Gibt es im Graph $G$ eine Teilmenge von $k$ Knoten so, dass jede Kante des Graphen ein Ende in dieser Teilmenge hat?
+
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[scale=1,every node/.style={draw,circle}]
+                \node (0) at (0,0.5) {};
+                \node (1) at (1,0) {};
+                \node (2) [red] at (1,1) {};
+                \node (3) at (2,0) {};
+                \node (4) at (2,0.5) {};
+                \node (5) at (2,1) {};
+                \node (6) at (3,1) {};
+                \draw (0) edge (1);
+                \draw (0) edge[red] (2);
+                \draw (1) edge[red] (2);
+                \draw (2) edge[red] (3);
+                \draw (2) edge[red] (4);
+                \draw (2) edge[red] (5);
+                \draw (4) edge (6);
+            \end{tikzpicture}
+            \hspace{5mm}
+            \begin{tikzpicture}[scale=1,every node/.style={draw,circle}]
+                \node (0) at (0,0.5) {};
+                \node (1) [red] at (1,0) {};
+                \node (2) [red] at (1,1) {};
+                \node (3) at (2,0) {};
+                \node (4) [red] at (2,0.5) {};
+                \node (5) at (2,1) {};
+                \node (6) at (3,1) {};
+                \draw (0) edge[red] (1);
+                \draw (0) edge[red] (2);
+                \draw (1) edge[red] (2);
+                \draw (2) edge[red] (3);
+                \draw (2) edge[red] (4);
+                \draw (2) edge[red] (5);
+                \draw (4) edge[red] (6);
+            \end{tikzpicture}
+            \caption*{$k=1$ nicht möglich, $k=3$ möglich}
+        \end{figure}
+
+        Beispielproblem: Die Strecken (Kanten) eines Eisenbahnnetzes (Graph) sollen regelmässig durch Mitarbeiter geprüft werden, die an den Knoten stationiert sind und die angrenzenden Strecken prüfen. Reichen $k$ Mitarbeiter aus, um das Netz zu kontrollieren?
+    \end{answered}
+
+    \item SET-COVERING
+    \begin{answered}
+        Geg.: $n$ Teilmengen $S_j \subset U$, Zahl $k \leq n$
+
+        Frage: Kann die Menge $U$ aus $k$ oder weniger Untermengen $S_j$ gebildet werden?
+
+        Notiz: Gleich wie \ref{set-packing}, aber Untermengen können überlappen.
+    \end{answered}
+
+    \item FEEDBACK-NOTE-SET
+    \begin{answered}
+        Geg.: gerichteter Graph $G$, Zahl $k$
+
+        Frage: Gibt es im Graphen $G$ eine Teilmenge von $k$ Knoten, so dass jeder Zyklus in $G$ einen Knoten dieser Teilmenge enthält?
+
+        Beispielproblem: Es gibt mehrere Buslinien. Wo muss das Putzpersonal Zentralen haben, um in allen Linien mitgenommen werden zu können?
+    \end{answered}
+
+    \item FEEDBACK-ARC-SET
+    \begin{answered}
+        Geg.: gerichteter Graph $G$, Zahl $k$
+
+        Frage: Gibt es im Graphen $G$ eine Teilmenge von $k$ Kanten, so dass jeder Zyklus in $G$ eine Kante dieser Teilmenge enthält?
+    \end{answered}
+
+    \item HAMPATH
+    \begin{answered}
+        Geg.: gerichteter Graph $G$
+
+        Frage: Gibt es im Graphen $G$ einen Pfad, der jeden Knoten \emph{genau einmal} besucht?
+    \end{answered}
+
+    \item UHAMPATH
+    \begin{answered}
+        Geg.: ungerichteter Graph $G$
+
+        Frage: Gibt es im Graphen $G$ einen Pfad, der jeden Knoten \emph{genau einmal} besucht?
+    \end{answered}
+
+    \item BIP (Binary Integer Programming) / 0-1 Integer Programming
+    \begin{answered}
+        Geg.: ganzzahlige Matrix $C$, ganzzahliger Vektor $d$
+
+        Frage: Gibt es einen binären Vektor x, so dass $C \cdot x = d$
+
+        Beispielproblem:
+        \[
+            \left[
+            \begin{matrix}
+                1 & 3 & 0\\
+                0 & 2 & 5
+            \end{matrix}
+            \right]
+            \cdot
+            \left[
+            \begin{matrix}
+                1\\
+                0\\
+                1
+            \end{matrix}
+            \right]
+            =
+            \left[
+            \begin{matrix}
+                1\\
+                5
+            \end{matrix}
+            \right]
+        \]
+    \end{answered}
+
+    \item 3SAT
+    \begin{answered}
+        3SAT ist dasselbe wie \ref{sat}, es sind aber maximal drei Literale pro Klausel enthalten. Beispiele dafür sind:
+        \[F = \overbrace{(\underbrace{x_0}_{Literal} \lor x_1 \lor x_2)}^{Klausel}\]
+        \[G = (x_0 \lor x_1 \lor x_2) \land (x_2 \lor x3) \land (\bar{x_2} \lor x_4) \land ()\]
+    \end{answered}
+
+    \item VERTEX-COLORING
+    \begin{answered}
+        Geg.: Graph $G$, Zahl $k$
+
+        Frage: Lassen sich die Knoten des Graphen $G$ mit $k$ Farben so einfärben, dass benachbarte Knoten verschiedene Farben haben?
+
+        Beispielproblem: Stundenplan planen an einer Universität. Es gibt Fächer (Knoten), Zeitslots (Farben) und Anmeldungen für die entsprechenden Fächer\footnote{Falls sich einer oder mehrere Studenten für zwei Fächer (Knoten) angemeldet haben, entsteht zwischen den Fächern eine Kante.} (Kanten). Um alle Fächer besuchen zu können muss eine Lösung für das VERTEX-COLORING-Problem gefunden werden.
+    \end{answered}
+
+    \item CLIQUE-COVER
+    \begin{answered}
+        Geg.: ungerichteter Graph $G$, Zahl $k$
+
+        Frage: Gibt es $k$ Cliquen in $G$ so, dass jeder Knoten in genau in einer Clique ist?
+    \end{answered}
+
+    \item EXACT-COVER
+    \begin{answered}
+        Geg.: Teilmengen $S_j \subset U$
+        
+        Frage: Gibt es eine \emph{disjunkte} Kombination aus Teilmengen $S_j$, so dass jedes Element in $U$ abgedeckt ist?
+    \end{answered}
+
+    \item 3D-MATCHING
+    \begin{answered}
+        Geg.: Menge $T$
+
+        Frage: Ist es möglich, aus einer Menge aus Tripeln $(T \times T \times T) \in U$ eine Teilmenge $W$ so zu bestimmen, dass jedes $w \in W$ auf einer Korrdinate übereinstimmt?
+
+        Beispielproblem: Sudoku mit einer dritten Dimension statt dem 3x3-Feld.
+    \end{answered}
+
+    \item STEINER-TREE
+    \begin{answered}
+        Geg.: gewichteter Graph $G$, Teilmenge $R$ von Knoten, Zahl $k$
+
+        Frage: Gibt es einen Baum mit Gesamtkosten $\leq k$, der alle Knoten in $R$ erreicht.
+    \end{answered}
+
+    \item HITTING-SET
+    \begin{answered}
+        Geg.: Menge von Teilmengen $S_j \subset S$
+
+        Frage: Gibt es eine Menge $H$, die jede Teilmenge $S_j$ in genau einem Element überlappt?
+
+        Ges.: $H \subset S$ so dass  $|H \cap S_j| = 1 \forall i$
+
+        Beispielproblem: Aus einer Menge von Mitarbeitern $S$ gibt es Teilmengen von Mitarbeitern mit einem bestimmten Skill $S_j$ (Skill $= j$). Es soll ein neues Team $H$ zusammengestellt werden, in welchem jeder Skill genau einmal vertreten ist.
+    \end{answered}
+
+    \item SUBSET-SUM (Rucksackproblem)
+    \begin{answered}
+        Geg.: Menge von Zahlen $S$, Zahl $t$
+
+        Frage: Kann man eine Menge $H = \{s| s \in S\}$ finden, die $t$ als Summe hat?
+    \end{answered}
+
+    \item SEQUENCING
+    \begin{answered}
+        Geg.: Eine Menge an Jobs, pro Job eine Ausführungszeit, Deadline und Strafe ($(a,d,s) \in J$) und eine maximale Strafe von $k$. Die Jobs müssen sequentiell abgearbeitet werden. Wird ein Job zu spät fertig, muss eine Strafe bezahlt werden.
+
+        Frage: Gibt es eine Reihenfolge von Jobs so, dass die Gesamte Strafe $\leq k$ ist?
+
+        Beispielproblem: Eine Firma hat eine bestimmte Anzahl laufende Verträge. Der Firma ist es nicht möglich, alle Verträge in einer bestimmten Zeit abzuarbeiten. Sie versucht also Schadensbegrenzung zu machen, indem sie möglichst viele Verträge in der verbleibenden Zeit abarbeitet, die eine hohe Strafe zur Folge haben.
+    \end{answered}
+
+    \item PARTITION
+    \begin{answered}
+        Geg.: Menge von ganzen Zahlen $C = \{c_0, c_1, c_2, \dots, c_n\}$
+
+        Frage: Lässt sich $C$ in zwei disjunktive Teilmengen teilen deren Summen identisch sind?
+        \[\sum_{i \in I} c_i = \sum_{i \in \bar{I}} c_i\]
+    \end{answered}
+
+    \item MAX-CUT
+    \begin{answered}
+        Geg.: gewichteter Graph $G$, Zahl $W$
+
+        Frage: Gibt es eine Teilmenge $S$ der Knoten, so dass das Gesamtgewicht der Kanten, die $S$ mit seinem Komplement verbinden, mindestens so Gross wie $W$ ist.
+
+        Beispielproblem: Bei einer bösartigen Übernahme einer Firma die Kommunikation zwischen Abteilungen möglichst erschweren. Es ist also Sinnvoll, $S$ und $\bar{S}$ aus Abteilungen zu bilden, die viel untereinander kommunizieren (eine Kante mit hohem Gewicht teilen).
+    \end{answered}
+\end{QandA}
+\end{document}

@@ -1,0 +1,39 @@
+\documentclass[a4paper,10pt]{article}
+
+\title{Satz von Rice}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+Gegeben sei eine Sprache $THREE_{TM}$, welche aus Beschreibungen von Turing-Maschinen $\langle M_1 \rangle, \langle M_1 \rangle, \dots$ besteht, welche jeweils Sprachen mit maximal drei Wörtern akzeptieren.
+
+\[
+    THREE_{TM} = \{\langle M \rangle | M \textnormal{ ist eine TM}, |L(M)| \leq 3\}
+\]
+
+Es soll gezeigt werden, dass $THREE_{TM}$ nicht entscheidbar ist. Dies kann gemacht werden, wenn die folgenden beiden Eigenschaften erfüllt sind:
+\begin{enumerate}
+    \item Es handelt sich bei der Eigenschaft, dass maximal drei Wörter akzeptiert werden, um eine \textbf{Spracheigenschaft}.
+    
+    Dies ist bewiesen, wenn $L(M_1) = L(M_2)$ nur \emph{genau dann} gilt, wenn 
+    \[
+        \langle M_1 \rangle\in THREE_{TM} \land \langle M_2 \rangle \in THREE_{TM}
+    \]
+    oder
+    \[
+        \langle M_1 \rangle\notin THREE_{TM} \land \langle M_2 \rangle \notin THREE_{TM}
+    \]
+
+    \item Die Eigenschaft, dass maximal drei Wörter akzeptiert werden, ist \textbf{nichttrivial}.
+    
+    Dies ist bewiesen, wenn $L(M_1) \neq L(M_2)$ zutrifft, da:
+    \[
+        \langle M_1 \rangle \in THREE_{TM} \land \langle M_2 \rangle \notin THREE_{TM}
+    \]
+    oder
+    \[
+        \langle M_1 \rangle \notin THREE_{TM} \land \langle M_2 \rangle \in THREE_{TM}
+    \]
+\end{enumerate}
+\end{document}
