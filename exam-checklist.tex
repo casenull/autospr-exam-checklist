@@ -1,5 +1,6 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage{amssymb}
+\usepackage{amsmath}
 \usepackage{enumitem}
 \usepackage[top=2cm,bottom=2cm,left=3cm,right=3cm]{geometry}
 \usepackage{hyperref}
@@ -133,6 +134,9 @@
             Ein Stackautomat/Pushdown Automata $P$ ist \textbf{immer nichtdeterministisch}. Er besteht aus Zuständen $Q$, dem Eingabealphabet $\Sigma$, dem Stackalphabet $\Gamma$, den Übergängen $\delta$, einem Startzustand $S \in Q$ z.B. $q_0$ und einer Menge von Akzeptierzuständen $F$. Somit ist $P=(Q,\Sigma,\Gamma,\delta,S,F)$
         \end{answered}
         \item Welche Eigenschaften muss eine Sprache haben, damit es einen Stack-Automaten gibt, der sie akzeptieren kann?
+        \begin{answered}
+            Die Sprache muss kontextfrei sein.
+        \end{answered}
         \item Beschreiben Sie eine Technik, mit der Sie zeigen können, dass eine Sprache nicht kontextfrei ist.
         \begin{answered}
             Das Pumping Lemma für kontextfreie Sprachen kann angewendet werden.
@@ -187,8 +191,17 @@
             Halteproblem?
         \end{answered}
         \item Was bedeutet Reduktion eines Problems auf ein anderes?
+        \begin{answered}
+            Ein Problem wird z.B. auf ein bekanntes NP-komplettes Problem reduziert, um zu beweisen, dass das Problem ebenfalls NP-komplett und somit von einer nichtdeterministischen Turing-Maschine in polynomieller Zeit entschieden werden kann bzw. von einer Turing-Maschine in polynomieller Zeit verifiziert werden kann.
+        \end{answered}
         \item Erklären Sie eine Standardtechnik, mit der man nachweisen kann, dass ein Problem nicht entscheidbar ist.
+        \begin{answered}
+            Reduktion auf ein nicht entscheidbares Problem.
+        \end{answered}
         \item Geben Sie ein Beispiel eines nicht entscheidbaren Problems.
+        \begin{answered}
+            Das Halteproblem.
+        \end{answered}
         \item Was besagt das Halte-Theorem?
         \begin{answered}
             Das Haltetheorem nach Turing besagt, dass anhand der Beschreibung einer Maschine/eines Programms nicht entschieden werden kann, ob sie/es anhalten wird. Beliebte Probleme hierzu sind Virenscanner, welche Programme auf ihr verhalten überprüfen sollen. Dies ist nicht möglich, da ein solcher Scanner das Halteproblem lösen könnte.
@@ -200,6 +213,12 @@
         \item Was bedeutet polynomielle Reduktion?
         \begin{answered}
             \label{poly-reduction}
+            $A$ und $B$ sind entscheidbar und $A$ soll auf $B$ reduziert werden. Die Abbildung
+            \[f : \begin{cases} 
+                \Sigma^* \to \Sigma^* \\
+                w \mapsto f(w)
+            \end{cases}\]
+            heisst \textbf{polynomielle Reduktion von $A$ auf $B$} mit $w \in A \equiv f(w) \in B$ und $f(w)$ in polynomieller Zeit in $|w|$ berechenbar. $A \leq_p B$ heisst "$A$ ist polynomiell leichter entscheidbar als $B$". So können Aussagen über die Entscheidbarkeit getätigt werden: Ist $B$ entscheidbar, so muss auch $A$ entscheidbar sein. Ist $A$ nicht entscheidbar, so darf auch $B$ nicht entscheidbar sein.
         \end{answered}
         \item Wie ändert sich die Laufzeit, wenn man eine nichtdeterministische Maschine auf einer deterministischen Maschine simuliert?
         \begin{answered}
@@ -211,6 +230,9 @@
             Das Satisfiability (zu Deutsch "Erfüllbarkeitsproblem der Aussagenlogik") ist ein NP-vollständiges Problem, welches sich folgendermassen beschreiben lässt: $F$ ist eine aussagenlogische Formel in konjunktiver Normalform. Gibt es eine Belegung der Variablen von $F$ so, dass die Aussage wahr wird? Als NP-Vollständiges Problem wird SAT von einer deterministischen Turingmaschine (z.B. einem Computer) in exponentieller Zeit entschieden.
         \end{answered}
         \item Was unterscheidet ein Problem wie SAT von einem Problem wie die ganzzahlige Division von Zahlen?
+        \begin{answered}
+            Die division kann von einer deterministischen Turing-Maschine in polynomieller Zeit entschieden werden, SAT nicht.
+        \end{answered}
         \item Wie können Sie herausfinden, ob eine Programmiersprache Turing-vollständig ist?
         \begin{answered}
             Eine Programmiersprache ist dann Turing-vollständig, wenn sich darin ein Turing-Maschinen-Simulator schreiben lässt.
@@ -224,5 +246,8 @@
             Nein, WHILE und GOTO sind äquivalente Operationen. Der Code, welcher mit WHILE geschrieben wird, ist nur einiges schöner und verständlicher.
         \end{answered}
         \item Ist es möglich, einen Compiler zu schreiben, der C-Code in Brainfuck übersetzt?
+        \begin{answered}
+            Nein, da C nicht kontextfrei ist. Eine nicht kontextfreie Sprache kann nicht in eine kontextfreie übersetzt werden.
+        \end{answered}
     \end{QandA}
 \end{document}
